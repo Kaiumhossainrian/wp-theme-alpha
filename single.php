@@ -15,7 +15,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12">
-                            <h2 class="post-title"><?php the_title(); ?></h2>
+                                <h2 class="post-title"><?php the_title(); ?></h2>
                             </div>
                         </div>
                         <div class="row">
@@ -29,8 +29,11 @@
                                 <p>
                                 <?php
                                     if(has_post_thumbnail( )){
+                                        $post_thumb_url = get_the_post_thumbnail_url( null, "large" );
+                                        echo '<a href="'.$post_thumb_url.'" data-featherlight="image">Open image in lightbox';
                                         the_post_thumbnail("large", array("class"=>"img-fluid"));
-                                    }
+                                        echo '</a>';
+                                    } 
                                 ?>
                                 </p>
                                 <p>
@@ -60,7 +63,13 @@
                 
             </div>
         </div>
-        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+            <?php
+            if(is_active_sidebar( "sidebar-2" )){
+                dynamic_sidebar("sidebar-2");
+            }
+            ?>
+        </div>
     </div>
 </div>
 
